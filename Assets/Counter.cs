@@ -1,18 +1,19 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
-using TMPro;
 
-public class NumberIncreaser : MonoBehaviour
+public class Counter : MonoBehaviour
 {
-    public TextMeshProUGUI numberText;
     private int count;
     private bool isRunning = false;
     private Coroutine countingCoroutine;
+    public float interval = 0.5f; // Интервал времени в секундах
 
-    public void ButtonClick()
+    public delegate void OnCountChanged(int newCount);
+    public event OnCountChanged CountChanged;
+
+    public void ToggleCounting()
     {
-        if (isRunning == true)
+        if (isRunning)
         {
             StopCounting();
         }
@@ -30,7 +31,10 @@ public class NumberIncreaser : MonoBehaviour
 
     private void StopCounting()
     {
-        StopCoroutine(countingCoroutine);
+        if (countingCoroutine != null)
+        {
+            StopCoroutine(countingCoroutine);
+        }
         isRunning = false;
     }
 
@@ -39,14 +43,13 @@ public class NumberIncreaser : MonoBehaviour
         while (true)
         {
             count++;
-            numberText.text = count.ToString();
-            Debug.Log(count);
-            yield return new WaitForSeconds(0.5f);
+            CountChanged?.Invoke(count);
+            yield return new WaitForSeconds(interval);
         }
     }
 
-    private void Start()
+    public int GetCount()
     {
-        numberText.text = count.ToString();
+        return count;
     }
 }
