@@ -3,21 +3,21 @@ using TMPro;
 
 public class CounterDisplay : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI numberText;
-    [SerializeField] private Counter counter;
+    [SerializeField] private TextMeshProUGUI _numberText;
+    [SerializeField] private Counter _counter;
 
     private void OnEnable()
     {
-        counter.CountChanged += UpdateDisplay;
+        _counter.CountChanged += UpdateDisplay;
     }
 
     private void OnDisable()
     {
-        counter.CountChanged -= UpdateDisplay;
+        _counter.CountChanged -= UpdateDisplay;
     }
 
     private void UpdateDisplay(int newCount)
     {
-        numberText.text = newCount.ToString();
+        _numberText.text = newCount.ToString();
     }
 }

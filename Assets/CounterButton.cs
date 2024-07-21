@@ -3,21 +3,21 @@ using UnityEngine.UI;
 
 public class CounterButton : MonoBehaviour
 {
-    [SerializeField] private Counter counter;
-    [SerializeField] private Button button;
+    [SerializeField] private Counter _counter;
+    [SerializeField] private Button _button;
 
     private void OnEnable()
     {
-        button.onClick.AddListener(OnButtonClick);
+        _button.onClick.AddListener(OnButtonClick);
     }
 
     private void OnDisable()
     {
-        button.onClick.RemoveListener(OnButtonClick);
+        _button.onClick.RemoveListener(OnButtonClick);
     }
 
     private void OnButtonClick()
     {
-        counter.ToggleCounting();
+        _counter.ToggleCounting();
     }
 }

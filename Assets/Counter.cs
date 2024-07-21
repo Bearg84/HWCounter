@@ -1,6 +1,6 @@
-using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine;
 
 public class Counter : MonoBehaviour
 {
@@ -9,12 +9,22 @@ public class Counter : MonoBehaviour
     private Coroutine _countingCoroutine;
     private WaitForSeconds _waitForSeconds;
 
-    public float interval = 0.5f;
+    private float _interval = 0.5f;
+
     public event Action<int> CountChanged;
 
     private void Awake()
     {
-        _waitForSeconds = new WaitForSeconds(interval);
+        _waitForSeconds = new WaitForSeconds(_interval);
+    }
+
+    public void SetInterval(float interval)
+    {
+        if (interval > 0)
+        {
+            _interval = interval;
+            _waitForSeconds = new WaitForSeconds(_interval);
+        }
     }
 
     public void ToggleCounting()

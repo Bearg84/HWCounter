@@ -268,8 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e841a2890c33740bf628351db5c18f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: {fileID: 382240805}
-  button: {fileID: 254379558}
+  _counter: {fileID: 382240805}
+  _button: {fileID: 254379558}
 --- !u!1 &382240804
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd25767db3cd42418161dd7d2cfbb2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 0.5
 --- !u!4 &382240806
 Transform:
   m_ObjectHideFlags: 0
@@ -684,7 +683,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd25767db3cd42418161dd7d2cfbb2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 0.5
 --- !u!1 &1936922990
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,8 +830,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31048dfa0db6b12488e33b307b97305e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberText: {fileID: 1936922992}
-  counter: {fileID: 382240805}
+  _numberText: {fileID: 1936922992}
+  _counter: {fileID: 382240805}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
