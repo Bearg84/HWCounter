@@ -3,8 +3,8 @@ using TMPro;
 
 public class CounterDisplay : MonoBehaviour
 {
-    public TextMeshProUGUI numberText;
-    public Counter counter;
+    [SerializeField] private TextMeshProUGUI numberText;
+    [SerializeField] private Counter counter;
 
     private void OnEnable()
     {

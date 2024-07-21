@@ -1,19 +1,25 @@
 using UnityEngine;
+using System;
 using System.Collections;
 
 public class Counter : MonoBehaviour
 {
-    private int count;
-    private bool isRunning = false;
-    private Coroutine countingCoroutine;
-    public float interval = 0.5f; // Интервал времени в секундах
+    private int _count;
+    private bool _isRunning = false;
+    private Coroutine _countingCoroutine;
+    private WaitForSeconds _waitForSeconds;
 
-    public delegate void OnCountChanged(int newCount);
-    public event OnCountChanged CountChanged;
+    public float interval = 0.5f;
+    public event Action<int> CountChanged;
+
+    private void Awake()
+    {
+        _waitForSeconds = new WaitForSeconds(interval);
+    }
 
     public void ToggleCounting()
     {
-        if (isRunning)
+        if (_isRunning)
         {
             StopCounting();
         }
@@ -25,31 +31,27 @@ public class Counter : MonoBehaviour
 
     private void StartCounting()
     {
-        countingCoroutine = StartCoroutine(Count());
-        isRunning = true;
+        _countingCoroutine = StartCoroutine(Count());
+        _isRunning = true;
     }
 
     private void StopCounting()
     {
-        if (countingCoroutine != null)
+        if (_countingCoroutine != null)
         {
-            StopCoroutine(countingCoroutine);
+            StopCoroutine(_countingCoroutine);
         }
-        isRunning = false;
+
+        _isRunning = false;
     }
 
     private IEnumerator Count()
     {
         while (true)
         {
-            count++;
-            CountChanged?.Invoke(count);
-            yield return new WaitForSeconds(interval);
+            _count++;
+            CountChanged?.Invoke(_count);
+            yield return _waitForSeconds;
         }
-    }
-
-    public int GetCount()
-    {
-        return count;
     }
 }
